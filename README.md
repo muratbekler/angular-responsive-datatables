@@ -2,6 +2,7 @@
 
 Nasıl Kullanılır?
 
+```
 <app-rtable 
 [rows]="dataRows" 
 [autoLoad]="true" [
@@ -21,3 +22,4 @@ dataSource="https://restcountries.eu/rest/v2/all">
         </ng-template>
     </app-rtable-cell>
 </app-rtable>
+```
