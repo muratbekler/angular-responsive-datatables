@@ -1,0 +1,39 @@
+<table #dataTable class="table  dataTable" style="margin-top:10px">
+    <!-- <div class="tbl-head">
+        <div class="tbl-cell"
+             *ngFor="let c of columns">
+            {{ c.header }}
+        </div>
+    </div> -->
+    <tbody class="tbl-body">
+        <tr class="tbl-row" [ngClass]="{ odd: odd, even: even }" *ngFor="let r of dataRows; let even = even; let odd = odd;">
+            <td class="tbl-cell" [ngClass]="{ 'tbl-cell-img': c.type == 'image' }" *ngFor="let c of columnsComponent">
+                <div class="tbl-cell-title">
+                    {{ c.title }}
+                </div>
+                <ng-template [ngIf]="c.template">
+                    <div class="tbl-cell-value">
+                    <tpl-render [data]="r" [templateProvider]="c"></tpl-render>
+                    </div>
+                </ng-template>
+                <ng-template [ngIf]="!c.template">
+                    <!--<div class="tbl-cell-title">
+                        {{ c.title }}
+                    </div>-->
+                    <div class="tbl-cell-value"
+                         *ngIf="c.type == 'string'">
+                        {{ parseDotNotation(r, c.data) }}
+                    </div>
+                    <div class="tbl-cell-value"
+                         *ngIf="c.type == 'date'">
+                        {{ parseDotNotation(r, c.data) | date:'longDate' }}
+                    </div>
+                    <div class="tbl-cell-value"
+                         *ngIf="c.type == 'money'">
+                        {{ parseDotNotation(r, c.data) | currency:'USD':'$' }}
+                    </div>
+                </ng-template>
+            </td>
+        </tr>
+    </tbody>
+</table>
